@@ -1,0 +1,156 @@
+# Apply these prefixes to each query
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vaibhav: <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Query to get only the preferred meals (simplified)
+SELECT DISTINCT ?meal (STR(?rawName) AS ?name)
+WHERE {
+    # Define preferences
+    BIND(false AS ?checkLactose)
+    BIND(false AS ?checkGluten)
+    BIND(false AS ?checkVegetarian)
+    BIND("Low" AS ?caloriesLevel)
+
+    # Basic meal information
+    ?meal rdf:type vaibhav:Meal.
+    ?meal vaibhav:hasName ?rawName.
+    
+    # Apply filters
+    FILTER(
+        # Lactose filter
+        (?checkLactose = false || NOT EXISTS { ?meal rdf:type vaibhav:LactoseMeal }) &&
+        
+        # Gluten filter
+        (?checkGluten = false || NOT EXISTS { ?meal rdf:type vaibhav:GlutenMeal }) &&
+        
+        # Vegetarian filter
+        (?checkVegetarian = false || NOT EXISTS { ?meal rdf:type vaibhav:NoVegMeal }) &&
+        
+        # Calories filter (simplified)
+        (?caloriesLevel = "" || 
+         (?caloriesLevel = "Low" && EXISTS { ?meal rdf:type vaibhav:LowCaloriesMeal }) ||
+         (?caloriesLevel = "Medium" && EXISTS { ?meal rdf:type vaibhav:MediumCaloriesMeal }) ||
+         (?caloriesLevel = "High" && EXISTS { ?meal rdf:type vaibhav:HighCaloriesMeal }))
+    )
+}
+
+# Query to get all ingredients
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:Ingredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all ingredients with gluten
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:GlutenIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all ingredients without gluten
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:NoGlutenIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all ingredients with lactose
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:LactoseIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all ingredients without lactose
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:NoLactoseIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all vegetarian ingredients
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:VegIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all non-vegetarian ingredients
+SELECT ?ingredient (STR(?rawName) AS ?name)
+WHERE {
+  ?ingredient rdf:type vaibhav:NoVegIngredient.
+  OPTIONAL { ?ingredient vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:Meal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals with gluten
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:GlutenMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all gluten-free meals
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:NoGlutenMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all vegetarian meals
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:VegMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all non-vegetarian meals
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:NoVegMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals with lactose
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:LactoseMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals without lactose
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:NoLactoseMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals with low calorie level
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:LowCaloriesMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals with medium calorie level
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:MediumCaloriesMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}
+
+# Query to get all meals with high calorie level
+SELECT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  ?meal rdf:type vaibhav:HighCaloriesMeal.
+  OPTIONAL { ?meal vaibhav:hasName ?rawName. }
+}

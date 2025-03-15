@@ -1,0 +1,3427 @@
+@prefix : <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrla: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix vaibhav: <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#> .
+@base <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/> .
+
+<http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+swrla:isRuleEnabled rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasIngredients
+vaibhav:hasIngredients rdf:type owl:ObjectProperty ;
+                       owl:inverseOf vaibhav:isInMeal ;
+                       rdfs:domain vaibhav:Meal ;
+                       rdfs:range vaibhav:Ingredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasMeal
+vaibhav:hasMeal rdf:type owl:ObjectProperty ;
+                rdfs:domain vaibhav:Menu ;
+                rdfs:range vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#isInMeal
+vaibhav:isInMeal rdf:type owl:ObjectProperty ;
+                 rdfs:domain vaibhav:Ingredient ;
+                 rdfs:range vaibhav:Meal .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#MealHasGluten
+vaibhav:MealHasGluten rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain vaibhav:Meal ;
+                      rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#MealHasLactose
+vaibhav:MealHasLactose rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain vaibhav:Meal ;
+                       rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#MealIsVegetarian
+vaibhav:MealIsVegetarian rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain vaibhav:Meal ;
+                         rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasCalories
+vaibhav:hasCalories rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain vaibhav:Meal ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasGluten
+vaibhav:hasGluten rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain vaibhav:Ingredient ;
+                  rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasLactose
+vaibhav:hasLactose rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain vaibhav:Ingredient ;
+                   rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#hasName
+vaibhav:hasName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain owl:Thing ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#isVegetarian
+vaibhav:isVegetarian rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain vaibhav:Ingredient ;
+                     rdfs:range xsd:boolean .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#GlutenIngredient
+vaibhav:GlutenIngredient rdf:type owl:Class ;
+                         rdfs:subClassOf vaibhav:Ingredient ;
+                         owl:disjointWith vaibhav:NoGlutenIngredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#GlutenMeal
+vaibhav:GlutenMeal rdf:type owl:Class ;
+                   rdfs:subClassOf vaibhav:Meal ;
+                   owl:disjointWith vaibhav:NoGlutenMeal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#HighCaloriesMeal
+vaibhav:HighCaloriesMeal rdf:type owl:Class ;
+                         rdfs:subClassOf vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Ingredient
+vaibhav:Ingredient rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseIngredient
+vaibhav:LactoseIngredient rdf:type owl:Class ;
+                          rdfs:subClassOf vaibhav:Ingredient ;
+                          owl:disjointWith vaibhav:NoLactoseIngredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseMeal
+vaibhav:LactoseMeal rdf:type owl:Class ;
+                    rdfs:subClassOf vaibhav:Meal ;
+                    owl:disjointWith vaibhav:NoLactoseMeal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LowCaloriesMeal
+vaibhav:LowCaloriesMeal rdf:type owl:Class ;
+                        rdfs:subClassOf vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Meal
+vaibhav:Meal rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#MediumCaloriesMeal
+vaibhav:MediumCaloriesMeal rdf:type owl:Class ;
+                           rdfs:subClassOf vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Menu
+vaibhav:Menu rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoGlutenIngredient
+vaibhav:NoGlutenIngredient rdf:type owl:Class ;
+                           rdfs:subClassOf vaibhav:Ingredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoGlutenMeal
+vaibhav:NoGlutenMeal rdf:type owl:Class ;
+                     rdfs:subClassOf vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoLactoseIngredient
+vaibhav:NoLactoseIngredient rdf:type owl:Class ;
+                            rdfs:subClassOf vaibhav:Ingredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoLactoseMeal
+vaibhav:NoLactoseMeal rdf:type owl:Class ;
+                      rdfs:subClassOf vaibhav:Meal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoVegIngredient
+vaibhav:NoVegIngredient rdf:type owl:Class ;
+                        rdfs:subClassOf vaibhav:Ingredient ;
+                        owl:disjointWith vaibhav:VegIngredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#NoVegMeal
+vaibhav:NoVegMeal rdf:type owl:Class ;
+                  rdfs:subClassOf vaibhav:Meal ;
+                  owl:disjointWith vaibhav:VegMeal .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#VegIngredient
+vaibhav:VegIngredient rdf:type owl:Class ;
+                      rdfs:subClassOf vaibhav:Ingredient .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#VegMeal
+vaibhav:VegMeal rdf:type owl:Class ;
+                rdfs:subClassOf vaibhav:Meal .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Apple
+vaibhav:Apple rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:Macedonia ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Apple" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#AranciniAlProsciutto
+vaibhav:AranciniAlProsciutto rdf:type owl:NamedIndividual ,
+                                      vaibhav:GlutenMeal ,
+                                      vaibhav:LactoseMeal ,
+                                      vaibhav:Meal ,
+                                      vaibhav:MediumCaloriesMeal ,
+                                      vaibhav:NoVegMeal ;
+                             vaibhav:hasIngredients vaibhav:Bread ,
+                                                    vaibhav:Flour ,
+                                                    vaibhav:Ham ,
+                                                    vaibhav:Mozzarella ,
+                                                    vaibhav:Rice ,
+                                                    vaibhav:Salt ,
+                                                    vaibhav:Water ;
+                             vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                             vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                             vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                             vaibhav:hasCalories "Medium" ;
+                             vaibhav:hasName "Arancini al prosciutto" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#AranciniAlRagu
+vaibhav:AranciniAlRagu rdf:type owl:NamedIndividual ,
+                                vaibhav:GlutenMeal ,
+                                vaibhav:HighCaloriesMeal ,
+                                vaibhav:LactoseMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoVegMeal ;
+                       vaibhav:hasIngredients vaibhav:Beef ,
+                                              vaibhav:Bread ,
+                                              vaibhav:Flour ,
+                                              vaibhav:Mozzarella ,
+                                              vaibhav:Onion ,
+                                              vaibhav:Rice ,
+                                              vaibhav:Salt ,
+                                              vaibhav:TomatoSauce ,
+                                              vaibhav:Water ;
+                       vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                       vaibhav:hasCalories "High" ;
+                       vaibhav:hasName "Arancini al ragù" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#AranciniVegetariani
+vaibhav:AranciniVegetariani rdf:type owl:NamedIndividual ,
+                                     vaibhav:GlutenMeal ,
+                                     vaibhav:LactoseMeal ,
+                                     vaibhav:Meal ,
+                                     vaibhav:MediumCaloriesMeal ,
+                                     vaibhav:VegMeal ;
+                            vaibhav:hasIngredients vaibhav:Bread ,
+                                                   vaibhav:Flour ,
+                                                   vaibhav:Mozzarella ,
+                                                   vaibhav:Oil ,
+                                                   vaibhav:Onion ,
+                                                   vaibhav:Rice ,
+                                                   vaibhav:Salt ,
+                                                   vaibhav:TomatoSauce ,
+                                                   vaibhav:Water ;
+                            vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                            vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                            vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                            vaibhav:hasCalories "Medium" ;
+                            vaibhav:hasName "Arancini vegetariani" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#ArrostoCarne
+vaibhav:ArrostoCarne rdf:type owl:NamedIndividual ,
+                              vaibhav:Meal ,
+                              vaibhav:MediumCaloriesMeal ,
+                              vaibhav:NoGlutenMeal ,
+                              vaibhav:NoLactoseMeal ,
+                              vaibhav:NoVegMeal ;
+                     vaibhav:hasIngredients vaibhav:Beef ,
+                                            vaibhav:Lemon ,
+                                            vaibhav:Oil ,
+                                            vaibhav:Rosemary ,
+                                            vaibhav:Salt ,
+                                            vaibhav:Sausage ;
+                     vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                     vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                     vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                     vaibhav:hasCalories "Medium" ;
+                     vaibhav:hasName "Arrosto di carne" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#ArrostoPesce
+vaibhav:ArrostoPesce rdf:type owl:NamedIndividual ,
+                              vaibhav:Meal ,
+                              vaibhav:MediumCaloriesMeal ,
+                              vaibhav:NoGlutenMeal ,
+                              vaibhav:NoLactoseMeal ,
+                              vaibhav:VegMeal ;
+                     vaibhav:hasIngredients vaibhav:Lemon ,
+                                            vaibhav:Oil ,
+                                            vaibhav:Rosemary ,
+                                            vaibhav:Salmon ,
+                                            vaibhav:Salt ,
+                                            vaibhav:Seabass ;
+                     vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                     vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                     vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                     vaibhav:hasCalories "Medium" ;
+                     vaibhav:hasName "Arrosto di pesce" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Avocado
+vaibhav:Avocado rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:Tartare ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Avocado" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Bacon
+vaibhav:Bacon rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:NoVegIngredient ;
+              vaibhav:isInMeal vaibhav:Carbonara ,
+                               vaibhav:PizzaPatateBacon ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Bacon" ;
+              vaibhav:isVegetarian "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Beef
+vaibhav:Beef rdf:type owl:NamedIndividual ,
+                      vaibhav:Ingredient ,
+                      vaibhav:NoGlutenIngredient ,
+                      vaibhav:NoLactoseIngredient ,
+                      vaibhav:NoVegIngredient ;
+             vaibhav:isInMeal vaibhav:AranciniAlRagu ,
+                              vaibhav:ArrostoCarne ,
+                              vaibhav:GrigliataCarne ,
+                              vaibhav:MelanzaneRipiene ,
+                              vaibhav:RavioliRagu ,
+                              vaibhav:ScaloppineFunghi ;
+             vaibhav:hasGluten "false"^^xsd:boolean ;
+             vaibhav:hasLactose "false"^^xsd:boolean ;
+             vaibhav:hasName "Beef" ;
+             vaibhav:isVegetarian "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Bread
+vaibhav:Bread rdf:type owl:NamedIndividual ,
+                       vaibhav:GlutenIngredient ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                               vaibhav:AranciniAlRagu ,
+                               vaibhav:AranciniVegetariani ,
+                               vaibhav:MelanzaneRipiene ;
+              vaibhav:hasGluten "true"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Bread" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Carbonara
+vaibhav:Carbonara rdf:type owl:NamedIndividual ,
+                           vaibhav:GlutenMeal ,
+                           vaibhav:HighCaloriesMeal ,
+                           vaibhav:LactoseMeal ,
+                           vaibhav:Meal ,
+                           vaibhav:NoVegMeal ;
+                  vaibhav:hasIngredients vaibhav:Bacon ,
+                                         vaibhav:Egg ,
+                                         vaibhav:Pasta ,
+                                         vaibhav:Pecorino ;
+                  vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                  vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                  vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                  vaibhav:hasCalories "High" ;
+                  vaibhav:hasName "Carbonara" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Carrot
+vaibhav:Carrot rdf:type owl:NamedIndividual ,
+                        vaibhav:Ingredient ,
+                        vaibhav:NoGlutenIngredient ,
+                        vaibhav:NoLactoseIngredient ,
+                        vaibhav:VegIngredient ;
+               vaibhav:isInMeal vaibhav:GnocchiSugoPapera ,
+                                vaibhav:Insalata ,
+                                vaibhav:InsalataRussa ,
+                                vaibhav:PizzaVegetariana ;
+               vaibhav:hasGluten "false"^^xsd:boolean ;
+               vaibhav:hasLactose "false"^^xsd:boolean ;
+               vaibhav:hasName "Carrot" ;
+               vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Champignon
+vaibhav:Champignon rdf:type owl:NamedIndividual ,
+                            vaibhav:Ingredient ,
+                            vaibhav:NoGlutenIngredient ,
+                            vaibhav:NoLactoseIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:PizzaBoscaiola ,
+                                    vaibhav:PizzaNorcina ,
+                                    vaibhav:PizzaVegetariana ,
+                                    vaibhav:RisottoSalsicciaFunghi ,
+                                    vaibhav:ScaloppineFunghi ;
+                   vaibhav:hasGluten "false"^^xsd:boolean ;
+                   vaibhav:hasLactose "false"^^xsd:boolean ;
+                   vaibhav:hasName "Champignon" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Clams
+vaibhav:Clams rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:PastaVongole ,
+                               vaibhav:RisottoVongole ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Clams" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Coffee
+vaibhav:Coffee rdf:type owl:NamedIndividual ,
+                        vaibhav:Ingredient ,
+                        vaibhav:NoGlutenIngredient ,
+                        vaibhav:NoLactoseIngredient ,
+                        vaibhav:VegIngredient ;
+               vaibhav:isInMeal vaibhav:Tiramisu ;
+               vaibhav:hasGluten "false"^^xsd:boolean ;
+               vaibhav:hasLactose "false"^^xsd:boolean ;
+               vaibhav:hasName "Coffee" ;
+               vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Duck
+vaibhav:Duck rdf:type owl:NamedIndividual ,
+                      vaibhav:Ingredient ,
+                      vaibhav:NoGlutenIngredient ,
+                      vaibhav:NoLactoseIngredient ,
+                      vaibhav:NoVegIngredient ;
+             vaibhav:isInMeal vaibhav:GnocchiSugoPapera ;
+             vaibhav:hasGluten "false"^^xsd:boolean ;
+             vaibhav:hasLactose "false"^^xsd:boolean ;
+             vaibhav:hasName "Duck" ;
+             vaibhav:isVegetarian "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Egg
+vaibhav:Egg rdf:type owl:NamedIndividual ,
+                     vaibhav:Ingredient ,
+                     vaibhav:NoGlutenIngredient ,
+                     vaibhav:NoLactoseIngredient ,
+                     vaibhav:VegIngredient ;
+            vaibhav:isInMeal vaibhav:Carbonara ,
+                             vaibhav:GnocchiSugoPapera ,
+                             vaibhav:InsalataRussa ,
+                             vaibhav:PizzaNorcina ,
+                             vaibhav:RavioliRagu ,
+                             vaibhav:RavioliVegetariani ;
+            vaibhav:hasGluten "false"^^xsd:boolean ;
+            vaibhav:hasLactose "false"^^xsd:boolean ;
+            vaibhav:hasName "Egg" ;
+            vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Eggplant
+vaibhav:Eggplant rdf:type owl:NamedIndividual ,
+                          vaibhav:Ingredient ,
+                          vaibhav:NoGlutenIngredient ,
+                          vaibhav:NoLactoseIngredient ,
+                          vaibhav:VegIngredient ;
+                 vaibhav:isInMeal vaibhav:MelanzaneRipiene ,
+                                  vaibhav:Parmigiana ,
+                                  vaibhav:PizzaMelanzaneProsciutto ,
+                                  vaibhav:PizzaVegetariana ,
+                                  vaibhav:VerdureGrigliate ;
+                 vaibhav:hasGluten "false"^^xsd:boolean ;
+                 vaibhav:hasLactose "false"^^xsd:boolean ;
+                 vaibhav:hasName "Eggplant" ;
+                 vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Flour
+vaibhav:Flour rdf:type owl:NamedIndividual ,
+                       vaibhav:GlutenIngredient ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                               vaibhav:AranciniAlRagu ,
+                               vaibhav:AranciniVegetariani ,
+                               vaibhav:GnocchiSugoPapera ,
+                               vaibhav:PizzaBoscaiola ,
+                               vaibhav:PizzaMargherita ,
+                               vaibhav:PizzaMelanzaneProsciutto ,
+                               vaibhav:PizzaNorcina ,
+                               vaibhav:PizzaPatateBacon ,
+                               vaibhav:PizzaProsciutto ,
+                               vaibhav:PizzaSalmone ,
+                               vaibhav:PizzaVegetariana ,
+                               vaibhav:PizzaZucchineSalsiccia ,
+                               vaibhav:RavioliRagu ,
+                               vaibhav:RavioliVegetariani ,
+                               vaibhav:ScaloppineFunghi ;
+              vaibhav:hasGluten "true"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Flour" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#GnocchiSugoPapera
+vaibhav:GnocchiSugoPapera rdf:type owl:NamedIndividual ,
+                                   vaibhav:GlutenMeal ,
+                                   vaibhav:HighCaloriesMeal ,
+                                   vaibhav:LactoseMeal ,
+                                   vaibhav:Meal ,
+                                   vaibhav:NoVegMeal ;
+                          vaibhav:hasIngredients vaibhav:Carrot ,
+                                                 vaibhav:Duck ,
+                                                 vaibhav:Egg ,
+                                                 vaibhav:Flour ,
+                                                 vaibhav:Oil ,
+                                                 vaibhav:Onion ,
+                                                 vaibhav:Parmeasan ,
+                                                 vaibhav:Potato ,
+                                                 vaibhav:Salt ,
+                                                 vaibhav:TomatoSauce ;
+                          vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                          vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                          vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                          vaibhav:hasCalories "High" ;
+                          vaibhav:hasName "Gnocchi al sugo di papera" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#GrigliataCarne
+vaibhav:GrigliataCarne rdf:type owl:NamedIndividual ,
+                                vaibhav:LowCaloriesMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoGlutenMeal ,
+                                vaibhav:NoLactoseMeal ,
+                                vaibhav:NoVegMeal ;
+                       vaibhav:hasIngredients vaibhav:Beef ,
+                                              vaibhav:Lemon ,
+                                              vaibhav:Oil ,
+                                              vaibhav:Rosemary ,
+                                              vaibhav:Salt ,
+                                              vaibhav:Sausage ;
+                       vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                       vaibhav:hasCalories "Low" ;
+                       vaibhav:hasName "Grigliata di carne" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#GrigliataPesce
+vaibhav:GrigliataPesce rdf:type owl:NamedIndividual ,
+                                vaibhav:LowCaloriesMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoGlutenMeal ,
+                                vaibhav:NoLactoseMeal ,
+                                vaibhav:VegMeal ;
+                       vaibhav:hasIngredients vaibhav:Lemon ,
+                                              vaibhav:Oil ,
+                                              vaibhav:Rosemary ,
+                                              vaibhav:Salmon ,
+                                              vaibhav:Salt ,
+                                              vaibhav:Seabass ;
+                       vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                       vaibhav:hasCalories "Low" ;
+                       vaibhav:hasName "Grigliata di pesce" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Ham
+vaibhav:Ham rdf:type owl:NamedIndividual ,
+                     vaibhav:Ingredient ,
+                     vaibhav:NoGlutenIngredient ,
+                     vaibhav:NoLactoseIngredient ,
+                     vaibhav:NoVegIngredient ;
+            vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                             vaibhav:PizzaMelanzaneProsciutto ,
+                             vaibhav:PizzaProsciutto ,
+                             vaibhav:Tagliere ;
+            vaibhav:hasGluten "false"^^xsd:boolean ;
+            vaibhav:hasLactose "false"^^xsd:boolean ;
+            vaibhav:hasName "Ham" ;
+            vaibhav:isVegetarian "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Insalata
+vaibhav:Insalata rdf:type owl:NamedIndividual ,
+                          vaibhav:LowCaloriesMeal ,
+                          vaibhav:Meal ,
+                          vaibhav:NoGlutenMeal ,
+                          vaibhav:NoLactoseMeal ,
+                          vaibhav:VegMeal ;
+                 vaibhav:hasIngredients vaibhav:Carrot ,
+                                        vaibhav:Lettuce ,
+                                        vaibhav:Oil ,
+                                        vaibhav:Salt ,
+                                        vaibhav:Tomato ;
+                 vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                 vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                 vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                 vaibhav:hasCalories "Low" ;
+                 vaibhav:hasName "Insalata" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#InsalataRussa
+vaibhav:InsalataRussa rdf:type owl:NamedIndividual ,
+                               vaibhav:HighCaloriesMeal ,
+                               vaibhav:Meal ,
+                               vaibhav:NoGlutenMeal ,
+                               vaibhav:NoLactoseMeal ,
+                               vaibhav:VegMeal ;
+                      vaibhav:hasIngredients vaibhav:Carrot ,
+                                             vaibhav:Egg ,
+                                             vaibhav:Mayonnaise ,
+                                             vaibhav:Oil ,
+                                             vaibhav:Peas ,
+                                             vaibhav:Potato ,
+                                             vaibhav:Salt ;
+                      vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                      vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                      vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                      vaibhav:hasCalories "High" ;
+                      vaibhav:hasName "Insalata russa" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Ketchup
+vaibhav:Ketchup rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:PatatineFritte ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Ketchup" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeNoVegHighMenu
+vaibhav:LactoseFreeGlutenFreeNoVegHighMenu rdf:type owl:NamedIndividual ,
+                                                    vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeNoVegLowMenu
+vaibhav:LactoseFreeGlutenFreeNoVegLowMenu rdf:type owl:NamedIndividual ,
+                                                   vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeNoVegMediumMenu
+vaibhav:LactoseFreeGlutenFreeNoVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                      vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeVegHighMenu
+vaibhav:LactoseFreeGlutenFreeVegHighMenu rdf:type owl:NamedIndividual ,
+                                                  vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeVegLowMenu
+vaibhav:LactoseFreeGlutenFreeVegLowMenu rdf:type owl:NamedIndividual ,
+                                                 vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenFreeVegMediumMenu
+vaibhav:LactoseFreeGlutenFreeVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                    vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenNoVegHighMenu
+vaibhav:LactoseFreeGlutenNoVegHighMenu rdf:type owl:NamedIndividual ,
+                                                vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenNoVegLowMenu
+vaibhav:LactoseFreeGlutenNoVegLowMenu rdf:type owl:NamedIndividual ,
+                                               vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenNoVegMediumMenu
+vaibhav:LactoseFreeGlutenNoVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                  vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenVegHighMenu
+vaibhav:LactoseFreeGlutenVegHighMenu rdf:type owl:NamedIndividual ,
+                                              vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenVegLowMenu
+vaibhav:LactoseFreeGlutenVegLowMenu rdf:type owl:NamedIndividual ,
+                                             vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseFreeGlutenVegMediumMenu
+vaibhav:LactoseFreeGlutenVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeNoVegHighMenu
+vaibhav:LactoseGlutenFreeNoVegHighMenu rdf:type owl:NamedIndividual ,
+                                                vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeNoVegLowMenu
+vaibhav:LactoseGlutenFreeNoVegLowMenu rdf:type owl:NamedIndividual ,
+                                               vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeNoVegMediumMenu
+vaibhav:LactoseGlutenFreeNoVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                  vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeVegHighMenu
+vaibhav:LactoseGlutenFreeVegHighMenu rdf:type owl:NamedIndividual ,
+                                              vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeVegLowMenu
+vaibhav:LactoseGlutenFreeVegLowMenu rdf:type owl:NamedIndividual ,
+                                             vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenFreeVegMediumMenu
+vaibhav:LactoseGlutenFreeVegMediumMenu rdf:type owl:NamedIndividual ,
+                                                vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenNoVegHighMenu
+vaibhav:LactoseGlutenNoVegHighMenu rdf:type owl:NamedIndividual ,
+                                            vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenNoVegLowMenu
+vaibhav:LactoseGlutenNoVegLowMenu rdf:type owl:NamedIndividual ,
+                                           vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenNoVegMediumMenu
+vaibhav:LactoseGlutenNoVegMediumMenu rdf:type owl:NamedIndividual ,
+                                              vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenVegHighMenu
+vaibhav:LactoseGlutenVegHighMenu rdf:type owl:NamedIndividual ,
+                                          vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenVegLowMenu
+vaibhav:LactoseGlutenVegLowMenu rdf:type owl:NamedIndividual ,
+                                         vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#LactoseGlutenVegMediumMenu
+vaibhav:LactoseGlutenVegMediumMenu rdf:type owl:NamedIndividual ,
+                                            vaibhav:Menu .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Ladyfinger
+vaibhav:Ladyfinger rdf:type owl:NamedIndividual ,
+                            vaibhav:GlutenIngredient ,
+                            vaibhav:Ingredient ,
+                            vaibhav:NoLactoseIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:Tiramisu ;
+                   vaibhav:hasGluten "true"^^xsd:boolean ;
+                   vaibhav:hasLactose "false"^^xsd:boolean ;
+                   vaibhav:hasName "Ladyfinger" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Lemon
+vaibhav:Lemon rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:ArrostoCarne ,
+                               vaibhav:ArrostoPesce ,
+                               vaibhav:GrigliataCarne ,
+                               vaibhav:GrigliataPesce ,
+                               vaibhav:Macedonia ,
+                               vaibhav:Tartare ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Lemon" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Lettuce
+vaibhav:Lettuce rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:Insalata ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Lettuce" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Macedonia
+vaibhav:Macedonia rdf:type owl:NamedIndividual ,
+                           vaibhav:LowCaloriesMeal ,
+                           vaibhav:Meal ,
+                           vaibhav:NoGlutenMeal ,
+                           vaibhav:NoLactoseMeal ,
+                           vaibhav:VegMeal ;
+                  vaibhav:hasIngredients vaibhav:Apple ,
+                                         vaibhav:Lemon ,
+                                         vaibhav:Peach ,
+                                         vaibhav:Strawberry ,
+                                         vaibhav:Sugar ;
+                  vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                  vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                  vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                  vaibhav:hasCalories "Low" ;
+                  vaibhav:hasName "Macedonia" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Mascarpone
+vaibhav:Mascarpone rdf:type owl:NamedIndividual ,
+                            vaibhav:Ingredient ,
+                            vaibhav:LactoseIngredient ,
+                            vaibhav:NoGlutenIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:Tiramisu ;
+                   vaibhav:hasGluten "false"^^xsd:boolean ;
+                   vaibhav:hasLactose "true"^^xsd:boolean ;
+                   vaibhav:hasName "Mascarpone" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Mayonnaise
+vaibhav:Mayonnaise rdf:type owl:NamedIndividual ,
+                            vaibhav:Ingredient ,
+                            vaibhav:NoGlutenIngredient ,
+                            vaibhav:NoLactoseIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:InsalataRussa ,
+                                    vaibhav:PatatineFritte ;
+                   vaibhav:hasGluten "false"^^xsd:boolean ;
+                   vaibhav:hasLactose "false"^^xsd:boolean ;
+                   vaibhav:hasName "Mayonnaise" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#MelanzaneRipiene
+vaibhav:MelanzaneRipiene rdf:type owl:NamedIndividual ,
+                                  vaibhav:GlutenMeal ,
+                                  vaibhav:HighCaloriesMeal ,
+                                  vaibhav:LactoseMeal ,
+                                  vaibhav:Meal ,
+                                  vaibhav:NoVegMeal ;
+                         vaibhav:hasIngredients vaibhav:Beef ,
+                                                vaibhav:Bread ,
+                                                vaibhav:Eggplant ,
+                                                vaibhav:Oil ,
+                                                vaibhav:Onion ,
+                                                vaibhav:Parmeasan ,
+                                                vaibhav:Salt ,
+                                                vaibhav:TomatoSauce ;
+                         vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                         vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                         vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                         vaibhav:hasCalories "High" ;
+                         vaibhav:hasName "Melanzane ripiene" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Mozzarella
+vaibhav:Mozzarella rdf:type owl:NamedIndividual ,
+                            vaibhav:Ingredient ,
+                            vaibhav:LactoseIngredient ,
+                            vaibhav:NoGlutenIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                                    vaibhav:AranciniAlRagu ,
+                                    vaibhav:AranciniVegetariani ,
+                                    vaibhav:Parmigiana ,
+                                    vaibhav:PizzaBoscaiola ,
+                                    vaibhav:PizzaMargherita ,
+                                    vaibhav:PizzaMelanzaneProsciutto ,
+                                    vaibhav:PizzaNorcina ,
+                                    vaibhav:PizzaPatateBacon ,
+                                    vaibhav:PizzaProsciutto ,
+                                    vaibhav:PizzaSalmone ,
+                                    vaibhav:PizzaVegetariana ,
+                                    vaibhav:PizzaZucchineSalsiccia ,
+                                    vaibhav:Tagliere ;
+                   vaibhav:hasGluten "false"^^xsd:boolean ;
+                   vaibhav:hasLactose "true"^^xsd:boolean ;
+                   vaibhav:hasName "Mozzarella" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Oil
+vaibhav:Oil rdf:type owl:NamedIndividual ,
+                     vaibhav:Ingredient ,
+                     vaibhav:NoGlutenIngredient ,
+                     vaibhav:NoLactoseIngredient ,
+                     vaibhav:VegIngredient ;
+            vaibhav:isInMeal vaibhav:AranciniVegetariani ,
+                             vaibhav:ArrostoCarne ,
+                             vaibhav:ArrostoPesce ,
+                             vaibhav:GnocchiSugoPapera ,
+                             vaibhav:GrigliataCarne ,
+                             vaibhav:GrigliataPesce ,
+                             vaibhav:Insalata ,
+                             vaibhav:InsalataRussa ,
+                             vaibhav:MelanzaneRipiene ,
+                             vaibhav:Parmigiana ,
+                             vaibhav:PastaSalmonePomodoro ,
+                             vaibhav:PastaVongole ,
+                             vaibhav:PatateForno ,
+                             vaibhav:PatatineFritte ,
+                             vaibhav:PizzaBoscaiola ,
+                             vaibhav:PizzaMargherita ,
+                             vaibhav:PizzaMelanzaneProsciutto ,
+                             vaibhav:PizzaNorcina ,
+                             vaibhav:PizzaPatateBacon ,
+                             vaibhav:PizzaProsciutto ,
+                             vaibhav:PizzaSalmone ,
+                             vaibhav:PizzaVegetariana ,
+                             vaibhav:PizzaZucchineSalsiccia ,
+                             vaibhav:RavioliRagu ,
+                             vaibhav:RavioliVegetariani ,
+                             vaibhav:RisottoSalsicciaFunghi ,
+                             vaibhav:RisottoVongole ,
+                             vaibhav:ScaloppineFunghi ,
+                             vaibhav:VerdureGrigliate ;
+            vaibhav:hasGluten "false"^^xsd:boolean ;
+            vaibhav:hasLactose "false"^^xsd:boolean ;
+            vaibhav:hasName "Oil" ;
+            vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Onion
+vaibhav:Onion rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:AranciniAlRagu ,
+                               vaibhav:AranciniVegetariani ,
+                               vaibhav:GnocchiSugoPapera ,
+                               vaibhav:MelanzaneRipiene ,
+                               vaibhav:Parmigiana ,
+                               vaibhav:PizzaVegetariana ,
+                               vaibhav:RavioliRagu ,
+                               vaibhav:RavioliVegetariani ,
+                               vaibhav:RisottoSalsicciaFunghi ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Onion" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Parmeasan
+vaibhav:Parmeasan rdf:type owl:NamedIndividual ,
+                           vaibhav:Ingredient ,
+                           vaibhav:LactoseIngredient ,
+                           vaibhav:NoGlutenIngredient ,
+                           vaibhav:VegIngredient ;
+                  vaibhav:isInMeal vaibhav:GnocchiSugoPapera ,
+                                   vaibhav:MelanzaneRipiene ,
+                                   vaibhav:Parmigiana ,
+                                   vaibhav:Tagliere ;
+                  vaibhav:hasGluten "false"^^xsd:boolean ;
+                  vaibhav:hasLactose "true"^^xsd:boolean ;
+                  vaibhav:hasName "Parmeasan" ;
+                  vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Parmigiana
+vaibhav:Parmigiana rdf:type owl:NamedIndividual ,
+                            vaibhav:HighCaloriesMeal ,
+                            vaibhav:LactoseMeal ,
+                            vaibhav:Meal ,
+                            vaibhav:NoGlutenMeal ,
+                            vaibhav:VegMeal ;
+                   vaibhav:hasIngredients vaibhav:Eggplant ,
+                                          vaibhav:Mozzarella ,
+                                          vaibhav:Oil ,
+                                          vaibhav:Onion ,
+                                          vaibhav:Parmeasan ,
+                                          vaibhav:Salt ,
+                                          vaibhav:TomatoSauce ;
+                   vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                   vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                   vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                   vaibhav:hasCalories "High" ;
+                   vaibhav:hasName "Parmigiana" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Pasta
+vaibhav:Pasta rdf:type owl:NamedIndividual ,
+                       vaibhav:GlutenIngredient ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:Carbonara ,
+                               vaibhav:PastaSalmonePomodoro ,
+                               vaibhav:PastaVongole ;
+              vaibhav:hasGluten "true"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Pasta" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PastaSalmonePomodoro
+vaibhav:PastaSalmonePomodoro rdf:type owl:NamedIndividual ,
+                                      vaibhav:GlutenMeal ,
+                                      vaibhav:LowCaloriesMeal ,
+                                      vaibhav:Meal ,
+                                      vaibhav:NoLactoseMeal ,
+                                      vaibhav:VegMeal ;
+                             vaibhav:hasIngredients vaibhav:Oil ,
+                                                    vaibhav:Pasta ,
+                                                    vaibhav:Salmon ,
+                                                    vaibhav:Salt ,
+                                                    vaibhav:TomatoSauce ;
+                             vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                             vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                             vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                             vaibhav:hasCalories "Low" ;
+                             vaibhav:hasName "Pasta salmone e pomodoro" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PastaVongole
+vaibhav:PastaVongole rdf:type owl:NamedIndividual ,
+                              vaibhav:GlutenMeal ,
+                              vaibhav:LowCaloriesMeal ,
+                              vaibhav:Meal ,
+                              vaibhav:NoLactoseMeal ,
+                              vaibhav:VegMeal ;
+                     vaibhav:hasIngredients vaibhav:Clams ,
+                                            vaibhav:Oil ,
+                                            vaibhav:Pasta ,
+                                            vaibhav:Salt ;
+                     vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                     vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                     vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                     vaibhav:hasCalories "Low" ;
+                     vaibhav:hasName "Pasta alle vongole" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PatateForno
+vaibhav:PatateForno rdf:type owl:NamedIndividual ,
+                             vaibhav:Meal ,
+                             vaibhav:MediumCaloriesMeal ,
+                             vaibhav:NoGlutenMeal ,
+                             vaibhav:NoLactoseMeal ,
+                             vaibhav:VegMeal ;
+                    vaibhav:hasIngredients vaibhav:Oil ,
+                                           vaibhav:Potato ,
+                                           vaibhav:Rosemary ,
+                                           vaibhav:Salt ;
+                    vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                    vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                    vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                    vaibhav:hasCalories "Medium" ;
+                    vaibhav:hasName "Patate al forno" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PatatineFritte
+vaibhav:PatatineFritte rdf:type owl:NamedIndividual ,
+                                vaibhav:HighCaloriesMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoGlutenMeal ,
+                                vaibhav:NoLactoseMeal ,
+                                vaibhav:VegMeal ;
+                       vaibhav:hasIngredients vaibhav:Ketchup ,
+                                              vaibhav:Mayonnaise ,
+                                              vaibhav:Oil ,
+                                              vaibhav:Potato ,
+                                              vaibhav:Salt ;
+                       vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                       vaibhav:hasCalories "High" ;
+                       vaibhav:hasName "Patatine fritte" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Peach
+vaibhav:Peach rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:Macedonia ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Peach" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Peas
+vaibhav:Peas rdf:type owl:NamedIndividual ,
+                      vaibhav:Ingredient ,
+                      vaibhav:NoGlutenIngredient ,
+                      vaibhav:NoLactoseIngredient ,
+                      vaibhav:VegIngredient ;
+             vaibhav:isInMeal vaibhav:InsalataRussa ;
+             vaibhav:hasGluten "false"^^xsd:boolean ;
+             vaibhav:hasLactose "false"^^xsd:boolean ;
+             vaibhav:hasName "Peas" ;
+             vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Pecorino
+vaibhav:Pecorino rdf:type owl:NamedIndividual ,
+                          vaibhav:Ingredient ,
+                          vaibhav:LactoseIngredient ,
+                          vaibhav:NoGlutenIngredient ,
+                          vaibhav:VegIngredient ;
+                 vaibhav:isInMeal vaibhav:Carbonara ,
+                                  vaibhav:RavioliRagu ,
+                                  vaibhav:RavioliVegetariani ,
+                                  vaibhav:Tagliere ;
+                 vaibhav:hasGluten "false"^^xsd:boolean ;
+                 vaibhav:hasLactose "true"^^xsd:boolean ;
+                 vaibhav:hasName "Pecorino" ;
+                 vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaBoscaiola
+vaibhav:PizzaBoscaiola rdf:type owl:NamedIndividual ,
+                                vaibhav:GlutenMeal ,
+                                vaibhav:HighCaloriesMeal ,
+                                vaibhav:LactoseMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoVegMeal ;
+                       vaibhav:hasIngredients vaibhav:Champignon ,
+                                              vaibhav:Flour ,
+                                              vaibhav:Mozzarella ,
+                                              vaibhav:Oil ,
+                                              vaibhav:Salt ,
+                                              vaibhav:Sausage ,
+                                              vaibhav:Water ;
+                       vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                       vaibhav:hasCalories "High" ;
+                       vaibhav:hasName "Pizza boscaiola" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaMargherita
+vaibhav:PizzaMargherita rdf:type owl:NamedIndividual ,
+                                 vaibhav:GlutenMeal ,
+                                 vaibhav:LactoseMeal ,
+                                 vaibhav:Meal ,
+                                 vaibhav:MediumCaloriesMeal ,
+                                 vaibhav:VegMeal ;
+                        vaibhav:hasIngredients vaibhav:Flour ,
+                                               vaibhav:Mozzarella ,
+                                               vaibhav:Oil ,
+                                               vaibhav:Salt ,
+                                               vaibhav:TomatoSauce ,
+                                               vaibhav:Water ;
+                        vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                        vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                        vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                        vaibhav:hasCalories "Medium" ;
+                        vaibhav:hasName "Pizza margherita" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaMelanzaneProsciutto
+vaibhav:PizzaMelanzaneProsciutto rdf:type owl:NamedIndividual ,
+                                          vaibhav:GlutenMeal ,
+                                          vaibhav:HighCaloriesMeal ,
+                                          vaibhav:LactoseMeal ,
+                                          vaibhav:Meal ,
+                                          vaibhav:NoVegMeal ;
+                                 vaibhav:hasIngredients vaibhav:Eggplant ,
+                                                        vaibhav:Flour ,
+                                                        vaibhav:Ham ,
+                                                        vaibhav:Mozzarella ,
+                                                        vaibhav:Oil ,
+                                                        vaibhav:Salt ,
+                                                        vaibhav:TomatoSauce ,
+                                                        vaibhav:Water ;
+                                 vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                                 vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                                 vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                                 vaibhav:hasCalories "High" ;
+                                 vaibhav:hasName "Pizza melanzane e prosciutto" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaNorcina
+vaibhav:PizzaNorcina rdf:type owl:NamedIndividual ,
+                              vaibhav:GlutenMeal ,
+                              vaibhav:HighCaloriesMeal ,
+                              vaibhav:LactoseMeal ,
+                              vaibhav:Meal ,
+                              vaibhav:NoVegMeal ;
+                     vaibhav:hasIngredients vaibhav:Champignon ,
+                                            vaibhav:Egg ,
+                                            vaibhav:Flour ,
+                                            vaibhav:Mozzarella ,
+                                            vaibhav:Oil ,
+                                            vaibhav:Salt ,
+                                            vaibhav:Sausage ,
+                                            vaibhav:Truffle ;
+                     vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                     vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                     vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                     vaibhav:hasCalories "High" ;
+                     vaibhav:hasName "Pizza norcina" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaPatateBacon
+vaibhav:PizzaPatateBacon rdf:type owl:NamedIndividual ,
+                                  vaibhav:GlutenMeal ,
+                                  vaibhav:HighCaloriesMeal ,
+                                  vaibhav:LactoseMeal ,
+                                  vaibhav:Meal ,
+                                  vaibhav:NoVegMeal ;
+                         vaibhav:hasIngredients vaibhav:Bacon ,
+                                                vaibhav:Flour ,
+                                                vaibhav:Mozzarella ,
+                                                vaibhav:Oil ,
+                                                vaibhav:Potato ,
+                                                vaibhav:Salt ,
+                                                vaibhav:TomatoSauce ,
+                                                vaibhav:Water ;
+                         vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                         vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                         vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                         vaibhav:hasCalories "High" ;
+                         vaibhav:hasName "Pizza patate e bacon" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaProsciutto
+vaibhav:PizzaProsciutto rdf:type owl:NamedIndividual ,
+                                 vaibhav:GlutenMeal ,
+                                 vaibhav:HighCaloriesMeal ,
+                                 vaibhav:LactoseMeal ,
+                                 vaibhav:Meal ,
+                                 vaibhav:NoVegMeal ;
+                        vaibhav:hasIngredients vaibhav:Flour ,
+                                               vaibhav:Ham ,
+                                               vaibhav:Mozzarella ,
+                                               vaibhav:Oil ,
+                                               vaibhav:Salt ,
+                                               vaibhav:TomatoSauce ,
+                                               vaibhav:Water ;
+                        vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                        vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                        vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                        vaibhav:hasCalories "High" ;
+                        vaibhav:hasName "Pizza al prosciutto" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaSalmone
+vaibhav:PizzaSalmone rdf:type owl:NamedIndividual ,
+                              vaibhav:GlutenMeal ,
+                              vaibhav:LactoseMeal ,
+                              vaibhav:Meal ,
+                              vaibhav:MediumCaloriesMeal ,
+                              vaibhav:VegMeal ;
+                     vaibhav:hasIngredients vaibhav:Flour ,
+                                            vaibhav:Mozzarella ,
+                                            vaibhav:Oil ,
+                                            vaibhav:Salmon ,
+                                            vaibhav:Salt ,
+                                            vaibhav:Water ;
+                     vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                     vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                     vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                     vaibhav:hasCalories "Medium" ;
+                     vaibhav:hasName "Pizza salmone" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaVegetariana
+vaibhav:PizzaVegetariana rdf:type owl:NamedIndividual ,
+                                  vaibhav:GlutenMeal ,
+                                  vaibhav:LactoseMeal ,
+                                  vaibhav:Meal ,
+                                  vaibhav:MediumCaloriesMeal ,
+                                  vaibhav:VegMeal ;
+                         vaibhav:hasIngredients vaibhav:Carrot ,
+                                                vaibhav:Champignon ,
+                                                vaibhav:Eggplant ,
+                                                vaibhav:Flour ,
+                                                vaibhav:Mozzarella ,
+                                                vaibhav:Oil ,
+                                                vaibhav:Onion ,
+                                                vaibhav:Salt ,
+                                                vaibhav:Tomato ,
+                                                vaibhav:Water ,
+                                                vaibhav:Zucchini ;
+                         vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                         vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                         vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                         vaibhav:hasCalories "Medium" ;
+                         vaibhav:hasName "Pizza vegetariana" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#PizzaZucchineSalsiccia
+vaibhav:PizzaZucchineSalsiccia rdf:type owl:NamedIndividual ,
+                                        vaibhav:GlutenMeal ,
+                                        vaibhav:HighCaloriesMeal ,
+                                        vaibhav:LactoseMeal ,
+                                        vaibhav:Meal ,
+                                        vaibhav:NoVegMeal ;
+                               vaibhav:hasIngredients vaibhav:Flour ,
+                                                      vaibhav:Mozzarella ,
+                                                      vaibhav:Oil ,
+                                                      vaibhav:Salt ,
+                                                      vaibhav:Sausage ,
+                                                      vaibhav:Water ,
+                                                      vaibhav:Zucchini ;
+                               vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                               vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                               vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                               vaibhav:hasCalories "High" ;
+                               vaibhav:hasName "Pizza zucchine e salsiccia" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Potato
+vaibhav:Potato rdf:type owl:NamedIndividual ,
+                        vaibhav:Ingredient ,
+                        vaibhav:NoGlutenIngredient ,
+                        vaibhav:NoLactoseIngredient ,
+                        vaibhav:VegIngredient ;
+               vaibhav:isInMeal vaibhav:GnocchiSugoPapera ,
+                                vaibhav:InsalataRussa ,
+                                vaibhav:PatateForno ,
+                                vaibhav:PatatineFritte ,
+                                vaibhav:PizzaPatateBacon ;
+               vaibhav:hasGluten "false"^^xsd:boolean ;
+               vaibhav:hasLactose "false"^^xsd:boolean ;
+               vaibhav:hasName "Potato" ;
+               vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#RavioliRagu
+vaibhav:RavioliRagu rdf:type owl:NamedIndividual ,
+                             vaibhav:GlutenMeal ,
+                             vaibhav:HighCaloriesMeal ,
+                             vaibhav:LactoseMeal ,
+                             vaibhav:Meal ,
+                             vaibhav:NoVegMeal ;
+                    vaibhav:hasIngredients vaibhav:Beef ,
+                                           vaibhav:Egg ,
+                                           vaibhav:Flour ,
+                                           vaibhav:Oil ,
+                                           vaibhav:Onion ,
+                                           vaibhav:Pecorino ,
+                                           vaibhav:Ricotta ,
+                                           vaibhav:Salt ,
+                                           vaibhav:TomatoSauce ;
+                    vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                    vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                    vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                    vaibhav:hasCalories "High" ;
+                    vaibhav:hasName "Ravioli al ragù" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#RavioliVegetariani
+vaibhav:RavioliVegetariani rdf:type owl:NamedIndividual ,
+                                    vaibhav:GlutenMeal ,
+                                    vaibhav:LactoseMeal ,
+                                    vaibhav:Meal ,
+                                    vaibhav:MediumCaloriesMeal ,
+                                    vaibhav:VegMeal ;
+                           vaibhav:hasIngredients vaibhav:Egg ,
+                                                  vaibhav:Flour ,
+                                                  vaibhav:Oil ,
+                                                  vaibhav:Onion ,
+                                                  vaibhav:Pecorino ,
+                                                  vaibhav:Ricotta ,
+                                                  vaibhav:Salt ,
+                                                  vaibhav:TomatoSauce ;
+                           vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                           vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                           vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                           vaibhav:hasCalories "Medium" ;
+                           vaibhav:hasName "Ravioli vegetariani" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Rice
+vaibhav:Rice rdf:type owl:NamedIndividual ,
+                      vaibhav:Ingredient ,
+                      vaibhav:NoGlutenIngredient ,
+                      vaibhav:NoLactoseIngredient ,
+                      vaibhav:VegIngredient ;
+             vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                              vaibhav:AranciniAlRagu ,
+                              vaibhav:AranciniVegetariani ,
+                              vaibhav:RisottoSalsicciaFunghi ,
+                              vaibhav:RisottoVongole ;
+             vaibhav:hasGluten "false"^^xsd:boolean ;
+             vaibhav:hasLactose "false"^^xsd:boolean ;
+             vaibhav:hasName "Rice" ;
+             vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Ricotta
+vaibhav:Ricotta rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:LactoseIngredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:RavioliRagu ,
+                                 vaibhav:RavioliVegetariani ,
+                                 vaibhav:Tagliere ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "true"^^xsd:boolean ;
+                vaibhav:hasName "Ricotta" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#RisottoSalsicciaFunghi
+vaibhav:RisottoSalsicciaFunghi rdf:type owl:NamedIndividual ,
+                                        vaibhav:Meal ,
+                                        vaibhav:MediumCaloriesMeal ,
+                                        vaibhav:NoGlutenMeal ,
+                                        vaibhav:NoLactoseMeal ,
+                                        vaibhav:NoVegMeal ;
+                               vaibhav:hasIngredients vaibhav:Champignon ,
+                                                      vaibhav:Oil ,
+                                                      vaibhav:Onion ,
+                                                      vaibhav:Rice ,
+                                                      vaibhav:Salt ,
+                                                      vaibhav:Sausage ;
+                               vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                               vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                               vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                               vaibhav:hasCalories "Medium" ;
+                               vaibhav:hasName "Risotto salsiccia e funghi" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#RisottoVongole
+vaibhav:RisottoVongole rdf:type owl:NamedIndividual ,
+                                vaibhav:LowCaloriesMeal ,
+                                vaibhav:Meal ,
+                                vaibhav:NoGlutenMeal ,
+                                vaibhav:NoLactoseMeal ,
+                                vaibhav:VegMeal ;
+                       vaibhav:hasIngredients vaibhav:Clams ,
+                                              vaibhav:Oil ,
+                                              vaibhav:Rice ,
+                                              vaibhav:Salt ;
+                       vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                       vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                       vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                       vaibhav:hasCalories "Low" ;
+                       vaibhav:hasName "Risotto alle vongole" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Rosemary
+vaibhav:Rosemary rdf:type owl:NamedIndividual ,
+                          vaibhav:Ingredient ,
+                          vaibhav:NoGlutenIngredient ,
+                          vaibhav:NoLactoseIngredient ,
+                          vaibhav:VegIngredient ;
+                 vaibhav:isInMeal vaibhav:ArrostoCarne ,
+                                  vaibhav:ArrostoPesce ,
+                                  vaibhav:GrigliataCarne ,
+                                  vaibhav:GrigliataPesce ,
+                                  vaibhav:PatateForno ,
+                                  vaibhav:ScaloppineFunghi ,
+                                  vaibhav:VerdureGrigliate ;
+                 vaibhav:hasGluten "false"^^xsd:boolean ;
+                 vaibhav:hasLactose "false"^^xsd:boolean ;
+                 vaibhav:hasName "Rosemary" ;
+                 vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Salmon
+vaibhav:Salmon rdf:type owl:NamedIndividual ,
+                        vaibhav:Ingredient ,
+                        vaibhav:NoGlutenIngredient ,
+                        vaibhav:NoLactoseIngredient ,
+                        vaibhav:VegIngredient ;
+               vaibhav:isInMeal vaibhav:ArrostoPesce ,
+                                vaibhav:GrigliataPesce ,
+                                vaibhav:PastaSalmonePomodoro ,
+                                vaibhav:PizzaSalmone ,
+                                vaibhav:Tartare ;
+               vaibhav:hasGluten "false"^^xsd:boolean ;
+               vaibhav:hasLactose "false"^^xsd:boolean ;
+               vaibhav:hasName "Salmon" ;
+               vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Salt
+vaibhav:Salt rdf:type owl:NamedIndividual ,
+                      vaibhav:Ingredient ,
+                      vaibhav:NoGlutenIngredient ,
+                      vaibhav:NoLactoseIngredient ,
+                      vaibhav:VegIngredient ;
+             vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                              vaibhav:AranciniAlRagu ,
+                              vaibhav:AranciniVegetariani ,
+                              vaibhav:ArrostoCarne ,
+                              vaibhav:ArrostoPesce ,
+                              vaibhav:GnocchiSugoPapera ,
+                              vaibhav:GrigliataCarne ,
+                              vaibhav:GrigliataPesce ,
+                              vaibhav:Insalata ,
+                              vaibhav:InsalataRussa ,
+                              vaibhav:MelanzaneRipiene ,
+                              vaibhav:Parmigiana ,
+                              vaibhav:PastaSalmonePomodoro ,
+                              vaibhav:PastaVongole ,
+                              vaibhav:PatateForno ,
+                              vaibhav:PatatineFritte ,
+                              vaibhav:PizzaBoscaiola ,
+                              vaibhav:PizzaMargherita ,
+                              vaibhav:PizzaMelanzaneProsciutto ,
+                              vaibhav:PizzaNorcina ,
+                              vaibhav:PizzaPatateBacon ,
+                              vaibhav:PizzaProsciutto ,
+                              vaibhav:PizzaSalmone ,
+                              vaibhav:PizzaVegetariana ,
+                              vaibhav:PizzaZucchineSalsiccia ,
+                              vaibhav:RavioliRagu ,
+                              vaibhav:RavioliVegetariani ,
+                              vaibhav:RisottoSalsicciaFunghi ,
+                              vaibhav:RisottoVongole ,
+                              vaibhav:ScaloppineFunghi ,
+                              vaibhav:Tartare ,
+                              vaibhav:VerdureGrigliate ;
+             vaibhav:hasGluten "false"^^xsd:boolean ;
+             vaibhav:hasLactose "false"^^xsd:boolean ;
+             vaibhav:hasName "Salt" ;
+             vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Sausage
+vaibhav:Sausage rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:NoVegIngredient ;
+                vaibhav:isInMeal vaibhav:ArrostoCarne ,
+                                 vaibhav:GrigliataCarne ,
+                                 vaibhav:PizzaBoscaiola ,
+                                 vaibhav:PizzaNorcina ,
+                                 vaibhav:PizzaZucchineSalsiccia ,
+                                 vaibhav:RisottoSalsicciaFunghi ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Sausage" ;
+                vaibhav:isVegetarian "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#ScaloppineFunghi
+vaibhav:ScaloppineFunghi rdf:type owl:NamedIndividual ,
+                                  vaibhav:GlutenMeal ,
+                                  vaibhav:LowCaloriesMeal ,
+                                  vaibhav:Meal ,
+                                  vaibhav:NoLactoseMeal ,
+                                  vaibhav:NoVegMeal ;
+                         vaibhav:hasIngredients vaibhav:Beef ,
+                                                vaibhav:Champignon ,
+                                                vaibhav:Flour ,
+                                                vaibhav:Oil ,
+                                                vaibhav:Rosemary ,
+                                                vaibhav:Salt ;
+                         vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                         vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                         vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                         vaibhav:hasCalories "Low" ;
+                         vaibhav:hasName "Scaloppine ai funghi" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Seabass
+vaibhav:Seabass rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:ArrostoPesce ,
+                                 vaibhav:GrigliataPesce ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Seabass" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#SparklingWater
+vaibhav:SparklingWater rdf:type owl:NamedIndividual ,
+                                vaibhav:Ingredient ,
+                                vaibhav:NoGlutenIngredient ,
+                                vaibhav:NoLactoseIngredient ,
+                                vaibhav:VegIngredient ;
+                       vaibhav:hasGluten "false"^^xsd:boolean ;
+                       vaibhav:hasLactose "false"^^xsd:boolean ;
+                       vaibhav:hasName "Sparkling water" ;
+                       vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Strawberry
+vaibhav:Strawberry rdf:type owl:NamedIndividual ,
+                            vaibhav:Ingredient ,
+                            vaibhav:NoGlutenIngredient ,
+                            vaibhav:NoLactoseIngredient ,
+                            vaibhav:VegIngredient ;
+                   vaibhav:isInMeal vaibhav:Macedonia ;
+                   vaibhav:hasGluten "false"^^xsd:boolean ;
+                   vaibhav:hasLactose "false"^^xsd:boolean ;
+                   vaibhav:hasName "Strawberry" ;
+                   vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Sugar
+vaibhav:Sugar rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:Macedonia ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Sugar" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Tagliere
+vaibhav:Tagliere rdf:type owl:NamedIndividual ,
+                          vaibhav:HighCaloriesMeal ,
+                          vaibhav:LactoseMeal ,
+                          vaibhav:Meal ,
+                          vaibhav:NoGlutenMeal ,
+                          vaibhav:NoVegMeal ;
+                 vaibhav:hasIngredients vaibhav:Ham ,
+                                        vaibhav:Mozzarella ,
+                                        vaibhav:Parmeasan ,
+                                        vaibhav:Pecorino ,
+                                        vaibhav:Ricotta ;
+                 vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                 vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                 vaibhav:MealIsVegetarian "false"^^xsd:boolean ;
+                 vaibhav:hasCalories "High" ;
+                 vaibhav:hasName "Tagliere" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Tartare
+vaibhav:Tartare rdf:type owl:NamedIndividual ,
+                         vaibhav:HighCaloriesMeal ,
+                         vaibhav:Meal ,
+                         vaibhav:NoGlutenMeal ,
+                         vaibhav:NoLactoseMeal ,
+                         vaibhav:VegMeal ;
+                vaibhav:hasIngredients vaibhav:Avocado ,
+                                       vaibhav:Lemon ,
+                                       vaibhav:Salmon ,
+                                       vaibhav:Salt ,
+                                       vaibhav:Tomato ;
+                vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                vaibhav:hasCalories "High" ;
+                vaibhav:hasName "Tartare" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Tiramisu
+vaibhav:Tiramisu rdf:type owl:NamedIndividual ,
+                          vaibhav:GlutenMeal ,
+                          vaibhav:HighCaloriesMeal ,
+                          vaibhav:LactoseMeal ,
+                          vaibhav:Meal ,
+                          vaibhav:VegMeal ;
+                 vaibhav:hasIngredients vaibhav:Coffee ,
+                                        vaibhav:Ladyfinger ,
+                                        vaibhav:Mascarpone ;
+                 vaibhav:MealHasGluten "true"^^xsd:boolean ;
+                 vaibhav:MealHasLactose "true"^^xsd:boolean ;
+                 vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                 vaibhav:hasCalories "High" ;
+                 vaibhav:hasName "Tiramisù" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Tomato
+vaibhav:Tomato rdf:type owl:NamedIndividual ,
+                        vaibhav:Ingredient ,
+                        vaibhav:NoGlutenIngredient ,
+                        vaibhav:NoLactoseIngredient ,
+                        vaibhav:VegIngredient ;
+               vaibhav:isInMeal vaibhav:Insalata ,
+                                vaibhav:PizzaVegetariana ,
+                                vaibhav:Tartare ,
+                                vaibhav:VerdureGrigliate ;
+               vaibhav:hasGluten "false"^^xsd:boolean ;
+               vaibhav:hasLactose "false"^^xsd:boolean ;
+               vaibhav:hasName "Tomato" ;
+               vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#TomatoSauce
+vaibhav:TomatoSauce rdf:type owl:NamedIndividual ,
+                             vaibhav:Ingredient ,
+                             vaibhav:NoGlutenIngredient ,
+                             vaibhav:NoLactoseIngredient ,
+                             vaibhav:VegIngredient ;
+                    vaibhav:isInMeal vaibhav:AranciniAlRagu ,
+                                     vaibhav:AranciniVegetariani ,
+                                     vaibhav:GnocchiSugoPapera ,
+                                     vaibhav:MelanzaneRipiene ,
+                                     vaibhav:Parmigiana ,
+                                     vaibhav:PastaSalmonePomodoro ,
+                                     vaibhav:PizzaMargherita ,
+                                     vaibhav:PizzaMelanzaneProsciutto ,
+                                     vaibhav:PizzaPatateBacon ,
+                                     vaibhav:PizzaProsciutto ,
+                                     vaibhav:RavioliRagu ,
+                                     vaibhav:RavioliVegetariani ;
+                    vaibhav:hasGluten "false"^^xsd:boolean ;
+                    vaibhav:hasLactose "false"^^xsd:boolean ;
+                    vaibhav:hasName "Tomato sauce" ;
+                    vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Truffle
+vaibhav:Truffle rdf:type owl:NamedIndividual ,
+                         vaibhav:Ingredient ,
+                         vaibhav:NoGlutenIngredient ,
+                         vaibhav:NoLactoseIngredient ,
+                         vaibhav:VegIngredient ;
+                vaibhav:isInMeal vaibhav:PizzaNorcina ;
+                vaibhav:hasGluten "false"^^xsd:boolean ;
+                vaibhav:hasLactose "false"^^xsd:boolean ;
+                vaibhav:hasName "Truffle" ;
+                vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#VerdureGrigliate
+vaibhav:VerdureGrigliate rdf:type owl:NamedIndividual ,
+                                  vaibhav:LowCaloriesMeal ,
+                                  vaibhav:Meal ,
+                                  vaibhav:NoGlutenMeal ,
+                                  vaibhav:NoLactoseMeal ,
+                                  vaibhav:VegMeal ;
+                         vaibhav:hasIngredients vaibhav:Eggplant ,
+                                                vaibhav:Oil ,
+                                                vaibhav:Rosemary ,
+                                                vaibhav:Salt ,
+                                                vaibhav:Tomato ,
+                                                vaibhav:Zucchini ;
+                         vaibhav:MealHasGluten "false"^^xsd:boolean ;
+                         vaibhav:MealHasLactose "false"^^xsd:boolean ;
+                         vaibhav:MealIsVegetarian "true"^^xsd:boolean ;
+                         vaibhav:hasCalories "Low" ;
+                         vaibhav:hasName "Verdure grigliate" .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Water
+vaibhav:Water rdf:type owl:NamedIndividual ,
+                       vaibhav:Ingredient ,
+                       vaibhav:NoGlutenIngredient ,
+                       vaibhav:NoLactoseIngredient ,
+                       vaibhav:VegIngredient ;
+              vaibhav:isInMeal vaibhav:AranciniAlProsciutto ,
+                               vaibhav:AranciniAlRagu ,
+                               vaibhav:AranciniVegetariani ,
+                               vaibhav:PizzaBoscaiola ,
+                               vaibhav:PizzaMargherita ,
+                               vaibhav:PizzaMelanzaneProsciutto ,
+                               vaibhav:PizzaPatateBacon ,
+                               vaibhav:PizzaProsciutto ,
+                               vaibhav:PizzaSalmone ,
+                               vaibhav:PizzaVegetariana ,
+                               vaibhav:PizzaZucchineSalsiccia ;
+              vaibhav:hasGluten "false"^^xsd:boolean ;
+              vaibhav:hasLactose "false"^^xsd:boolean ;
+              vaibhav:hasName "Water" ;
+              vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#Zucchini
+vaibhav:Zucchini rdf:type owl:NamedIndividual ,
+                          vaibhav:Ingredient ,
+                          vaibhav:NoGlutenIngredient ,
+                          vaibhav:NoLactoseIngredient ,
+                          vaibhav:VegIngredient ;
+                 vaibhav:isInMeal vaibhav:PizzaVegetariana ,
+                                  vaibhav:PizzaZucchineSalsiccia ,
+                                  vaibhav:VerdureGrigliate ;
+                 vaibhav:hasGluten "false"^^xsd:boolean ;
+                 vaibhav:hasLactose "false"^^xsd:boolean ;
+                 vaibhav:hasName "Zucchini" ;
+                 vaibhav:isVegetarian "true"^^xsd:boolean .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( vaibhav:HighCaloriesMeal
+                vaibhav:LowCaloriesMeal
+                vaibhav:MediumCaloriesMeal
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( vaibhav:Apple
+                        vaibhav:AranciniAlProsciutto
+                        vaibhav:AranciniAlRagu
+                        vaibhav:AranciniVegetariani
+                        vaibhav:ArrostoCarne
+                        vaibhav:ArrostoPesce
+                        vaibhav:Avocado
+                        vaibhav:Bacon
+                        vaibhav:Beef
+                        vaibhav:Bread
+                        vaibhav:Carbonara
+                        vaibhav:Carrot
+                        vaibhav:Champignon
+                        vaibhav:Clams
+                        vaibhav:Coffee
+                        vaibhav:Duck
+                        vaibhav:Egg
+                        vaibhav:Eggplant
+                        vaibhav:Flour
+                        vaibhav:GnocchiSugoPapera
+                        vaibhav:GrigliataCarne
+                        vaibhav:GrigliataPesce
+                        vaibhav:Ham
+                        vaibhav:Insalata
+                        vaibhav:InsalataRussa
+                        vaibhav:Ketchup
+                        vaibhav:Ladyfinger
+                        vaibhav:Lemon
+                        vaibhav:Lettuce
+                        vaibhav:Macedonia
+                        vaibhav:Mascarpone
+                        vaibhav:Mayonnaise
+                        vaibhav:MelanzaneRipiene
+                        vaibhav:Mozzarella
+                        vaibhav:Oil
+                        vaibhav:Onion
+                        vaibhav:Parmeasan
+                        vaibhav:Parmigiana
+                        vaibhav:Pasta
+                        vaibhav:PastaSalmonePomodoro
+                        vaibhav:PastaVongole
+                        vaibhav:PatateForno
+                        vaibhav:PatatineFritte
+                        vaibhav:Peach
+                        vaibhav:Peas
+                        vaibhav:Pecorino
+                        vaibhav:PizzaBoscaiola
+                        vaibhav:PizzaMargherita
+                        vaibhav:PizzaMelanzaneProsciutto
+                        vaibhav:PizzaNorcina
+                        vaibhav:PizzaPatateBacon
+                        vaibhav:PizzaProsciutto
+                        vaibhav:PizzaSalmone
+                        vaibhav:PizzaVegetariana
+                        vaibhav:PizzaZucchineSalsiccia
+                        vaibhav:Potato
+                        vaibhav:RavioliRagu
+                        vaibhav:RavioliVegetariani
+                        vaibhav:Rice
+                        vaibhav:Ricotta
+                        vaibhav:RisottoSalsicciaFunghi
+                        vaibhav:RisottoVongole
+                        vaibhav:Rosemary
+                        vaibhav:Salmon
+                        vaibhav:Salt
+                        vaibhav:Sausage
+                        vaibhav:ScaloppineFunghi
+                        vaibhav:Seabass
+                        vaibhav:SparklingWater
+                        vaibhav:Strawberry
+                        vaibhav:Sugar
+                        vaibhav:Tagliere
+                        vaibhav:Tartare
+                        vaibhav:Tiramisu
+                        vaibhav:Tomato
+                        vaibhav:TomatoSauce
+                        vaibhav:Truffle
+                        vaibhav:VerdureGrigliate
+                        vaibhav:Water
+                        vaibhav:Zucchini
+                      )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> rdf:type swrl:Variable .
+
+http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y> rdf:type swrl:Variable .
+
+http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> rdf:type swrl:Variable .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for ingredients with gluten" ;
+   rdfs:label "Gluten ingredients rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasGluten ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Ingredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:GlutenIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for Ingredients lactose-free" ;
+   rdfs:label "Lactose-free Ingredients rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Ingredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoLactoseIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for Ingredients with lactose" ;
+   rdfs:label "Lactose ingredients rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Ingredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasLactose ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:LactoseIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for non Vegetarian Ingredients" ;
+   rdfs:label "Non vegetarian Ingredient rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:isVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Ingredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoVegIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for Vegetarian Ingredients" ;
+   rdfs:label "Vegetarian Ingredient rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:isVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Ingredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:VegIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get meals with lactose" ;
+   rdfs:label "Lactose meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:isInMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:LactoseIngredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:LactoseMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free non vegetarian high calories level menu" ;
+   rdfs:label "Lactose-free gluten-free non vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Menu ;
+                                      swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegHighMenu
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasLactose ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "false"^^xsd:boolean
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free non vegetarian low calories level menu" ;
+   rdfs:label "Lactose-free gluten-free non vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Menu ;
+                                      swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegLowMenu
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:hasCalories ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "Low"
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free non vegetarian medium calories level menu" ;
+   rdfs:label "Lactose-free gluten-free non vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Menu ;
+                                                                       swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegMediumMenu
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeNoVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free vegetarian high calories level menu" ;
+   rdfs:label "Lactose-free gluten-free vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasLactose ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "true"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "false"^^xsd:boolean
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                  swrl:classPredicate vaibhav:Menu ;
+                                                                                  swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegHighMenu
+                                                                                ] ;
+                                                                      rdf:rest rdf:nil
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free vegetarian low calories level menu" ;
+   rdfs:label "Lactose-free gluten-free vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:hasCalories ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "Low"
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                  swrl:classPredicate vaibhav:Menu ;
+                                                                                  swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegLowMenu
+                                                                                ] ;
+                                                                      rdf:rest rdf:nil
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten-free vegetarian medium calories level menu" ;
+   rdfs:label "Lactose-free gluten-free vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:hasCalories ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "Medium"
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "false"^^xsd:boolean
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                  swrl:classPredicate vaibhav:Menu ;
+                                                                                  swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegMediumMenu
+                                                                                ] ;
+                                                                      rdf:rest rdf:nil
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenFreeVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten non vegetarian high calories level menu" ;
+   rdfs:label "Lactose-free gluten non vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasLactose ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseFreeGlutenNoVegHighMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenNoVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten non vegetarian low calories level menu" ;
+   rdfs:label "Lactose-free gluten non vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Low"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseFreeGlutenNoVegLowMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenNoVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten non vegetarian medium calories level menu" ;
+   rdfs:label "Lactose-free gluten non vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Meal ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Menu ;
+                                                            swrl:argument1 vaibhav:LactoseFreeGlutenNoVegMediumMenu
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenNoVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten vegetarian high calories level menu" ;
+   rdfs:label "Lactose-free gluten vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasLactose ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "true"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Menu ;
+                                                            swrl:argument1 vaibhav:LactoseFreeGlutenVegHighMenu
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten vegetarian low calories level menu" ;
+   rdfs:label "Lactose-free gluten vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseFreeGlutenVegLowMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:hasCalories ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "Low"
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose-free gluten vegetarian medium calories level menu" ;
+   rdfs:label "Lactose-free gluten vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasLactose ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseFreeGlutenVegMediumMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:hasCalories ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "Medium"
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseFreeGlutenVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free non vegetarian high calories level menu" ;
+   rdfs:label "Lactose gluten-free non vegetarian high calories level menu" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Menu ;
+                                      swrl:argument1 vaibhav:LactoseGlutenFreeNoVegHighMenu
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeNoVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free non vegetarian low calories level menu" ;
+   rdfs:label "Lactose gluten-free non vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealHasGluten ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Low"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Meal ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Menu ;
+                                                            swrl:argument1 vaibhav:LactoseGlutenFreeNoVegLowMenu
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeNoVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free non vegetarian medium calories level menu" ;
+   rdfs:label "Lactose gluten-free non vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "Medium"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseGlutenFreeNoVegMediumMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeNoVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free vegetarian high calories level menu" ;
+   rdfs:label "Lactose gluten-free vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "false"^^xsd:boolean
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Menu ;
+                                                                       swrl:argument1 vaibhav:LactoseGlutenFreeVegHighMenu
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free vegetarian low calories level menu" ;
+   rdfs:label "Lactose gluten-free vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate vaibhav:hasCalories ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                 swrl:argument2 "Low"
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Menu ;
+                                                                       swrl:argument1 vaibhav:LactoseGlutenFreeVegLowMenu
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten-free vegetarian medium calories level menu" ;
+   rdfs:label "Lactose gluten-free vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseGlutenFreeVegMediumMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                                            swrl:argument2 "false"^^xsd:boolean
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate vaibhav:Meal ;
+                                                                       swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenFreeVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten non vegetarian high calories level menu" ;
+   rdfs:label "Lactose gluten non vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Menu ;
+                                      swrl:argument1 vaibhav:LactoseGlutenNoVegHighMenu
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Meal ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenNoVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten non vegetarian low calories level menu" ;
+   rdfs:label "Lactose gluten non vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "Low"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Meal ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseGlutenNoVegLowMenu
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenNoVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten non vegetarian medium calories level menu" ;
+   rdfs:label "Lactose gluten non vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Menu ;
+                           swrl:argument1 vaibhav:LactoseGlutenNoVegMediumMenu
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Meal ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenNoVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten vegetarian high calories level menu" ;
+   rdfs:label "Lactose gluten vegetarian high calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseGlutenVegHighMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenVegHighMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten vegetarian low calories level menu" ;
+   rdfs:label "Lactose gluten vegetarian low calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Low"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Menu ;
+                                                 swrl:argument1 vaibhav:LactoseGlutenVegLowMenu
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Meal ;
+                                                            swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenVegLowMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for lactose gluten vegetarian medium calories level menu" ;
+   rdfs:label "Lactose gluten vegetarian medium calories level menu rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                           swrl:argument2 "true"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate vaibhav:Meal ;
+                                                 swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate vaibhav:Menu ;
+                                                            swrl:argument1 vaibhav:LactoseGlutenVegMediumMenu
+                                                          ] ;
+                                                rdf:rest rdf:nil
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasMeal ;
+                           swrl:argument1 vaibhav:LactoseGlutenVegMediumMenu ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/meal>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get meals gluten-free" ;
+   rdfs:label "Gluten-free meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Meal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasGluten ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoGlutenMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get meals lactose-free" ;
+   rdfs:label "Lactose-free meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Meal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealHasLactose ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "false"^^xsd:boolean
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoLactoseMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get vegetarian meals" ;
+   rdfs:label "Vegetarian meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Meal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:MealIsVegetarian ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "true"^^xsd:boolean
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:VegMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for high calories meals" ;
+   rdfs:label "High calories meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasCalories ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "High"
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Meal ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:HighCaloriesMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for low calories meals" ;
+   rdfs:label "Low calories meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Meal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "Low"
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:LowCaloriesMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for medium calories meals" ;
+   rdfs:label "Medium calories meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:Meal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:hasCalories ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 "Medium"
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:MediumCaloriesMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get non vegetarian meals" ;
+   rdfs:label "Non vegetarian meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:isInMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:NoVegIngredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoVegMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Reverse rule of hasIngredient" ;
+   rdfs:label "Reverse of hasIngredient rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasIngredients ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest rdf:nil
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:isInMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y> ;
+                           swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule to get meals with gluten" ;
+   rdfs:label "Gluten meals rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:GlutenIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate vaibhav:isInMeal ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                                      swrl:argument2 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:GlutenMeal ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/y>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Rule for gluten-free Ingredients" ;
+   rdfs:label "Gluten-free ingredients rule" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                           swrl:propertyPredicate vaibhav:hasGluten ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x> ;
+                           swrl:argument2 "false"^^xsd:boolean
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate vaibhav:Ingredient ;
+                                      swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate vaibhav:NoGlutenIngredient ;
+                           swrl:argument1 http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav/x>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

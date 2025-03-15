@@ -1,0 +1,35 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX vaibhav: <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Query to get only the preferred meals 
+SELECT DISTINCT ?meal (STR(?rawName) AS ?name)
+WHERE {
+  # Define preferences - these can be set dynamically based on user input
+  BIND(false AS ?checkLactose)    # User is not lactose intolerant
+  BIND(false AS ?checkGluten)     # User is not gluten intolerant
+  BIND(false AS ?checkVegetarian) # User does not require vegetarian
+  BIND("Low" AS ?caloriesLevel)   # User prefers low calorie meals
+
+  # Basic meal information
+  ?meal rdf:type vaibhav:Meal.
+  ?meal vaibhav:hasName ?rawName.
+  
+  # Lactose filter
+  FILTER(?checkLactose = false || NOT EXISTS { ?meal rdf:type vaibhav:LactoseMeal })
+  
+  # Gluten filter
+  FILTER(?checkGluten = false || NOT EXISTS { ?meal rdf:type vaibhav:GlutenMeal })
+  
+  # Vegetarian filter
+  FILTER(?checkVegetarian = false || NOT EXISTS { ?meal rdf:type vaibhav:NoVegMeal })
+  
+  # Calories filter
+  FILTER(
+    ?caloriesLevel = "" || 
+    ?caloriesLevel = "High" ||
+    (?caloriesLevel = "Low" && EXISTS { ?meal rdf:type vaibhav:LowCaloriesMeal }) ||
+    (?caloriesLevel = "Medium" && EXISTS { ?meal rdf:type vaibhav:MediumCaloriesMeal })
+  )
+}

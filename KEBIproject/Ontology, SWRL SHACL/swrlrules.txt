@@ -1,0 +1,175 @@
+Rules for gluten/gluten-free ingredients/meals:
+
+1. Gluten ingredients rule: Rule for ingredients with gluten.
+
+	vaibhav:Ingredient(?x) ^ vaibhav:hasGluten(?x, true) -> vaibhav:GlutenIngredient(?x)
+
+2. Gluten-free ingredients rule: Rule for gluten-free Ingredients.
+	
+	vaibhav:Ingredient(?x) ^ vaibhav:hasGluten(?x, false) -> vaibhav:NoGlutenIngredient(?x)
+
+3. Gluten meals rule: Rule to get meals with gluten.
+
+	vaibhav:GlutenIngredient(?x) ^ vaibhav:isInMeal(?x, ?y) -> vaibhav:GlutenMeal(?y)
+
+4. Gluten-free meals rule: Rule to get meals gluten-free.
+	vaibhav:Meal(?x) ^ vaibhav:MealHasGluten(?x, false) -> vaibhav:NoGlutenMeal(?x)
+
+
+Rules for lactose/lactose-free ingredients/meals:
+
+5. Lactose ingredients rule: Rule for Ingredients with lactose.
+
+	vaibhav:Ingredient(?x) ^ vaibhav:hasLactose(?x, true) -> vaibhav:LactoseIngredient(?x)
+
+6. Lactose-free Ingredients rule: Rule for Ingredients lactose-free.
+
+	vaibhav:Ingredient(?x) ^ vaibhav:hasLactose(?x, false) -> vaibhav:NoLactoseIngredient(?x)
+
+7. Lactose meals rule: Rule to get meals with lactose.
+
+	vaibhav:LactoseIngredient(?x) ^ vaibhav:isInMeal(?x, ?y) -> vaibhav:LactoseMeal(?y)
+
+8. Lactose-free meals rule: Rule to get meals lactose-free.
+
+	vaibhav:Meal(?x) ^ vaibhav:MealHasLactose(?x, false) -> vaibhav:NoLactoseMeal(?x)
+
+
+Rules for vegetarian/non-vegetarian ingredients/meals:
+
+9. Vegetarian Ingredient rule: Rule for Vegetarian Ingredients.
+
+	vaibhav:Ingredient(?x) ^ vaibhav:isVegetarian(?x, true) -> vaibhav:VegIngredient(?x)
+
+10. Non vegetarian Ingredient rule: Rule for non Vegetarian Ingredients.
+
+	vaibhav:Ingredient(?x) ^ vaibhav:isVegetarian(?x, false) -> vaibhav:NoVegIngredient(?x)
+
+11. Vegetarian meals rule: Rule to get vegetarian meals.
+
+	vaibhav:Meal(?x) ^ vaibhav:MealIsVegetarian(?x, true) -> vaibhav:VegMeal(?x)
+
+12. Non vegetarian meals rule: Rule to get non vegetarian meals.
+	
+	vaibhav:NoVegIngredient(?x) ^ vaibhav:isInMeal(?x, ?y) -> vaibhav:NoVegMeal(?y)
+
+
+Rules for Low/Medium/High Calories level:
+
+13. Low calories meals rule: Rule for low calories meals.
+
+	vaibhav:Meal(?x) ^ vaibhav:hasCalories(?x, "Low") -> vaibhav:LowCaloriesMeal(?x)
+
+14. Medium calories meals rule: Rule for medium calories meals.
+
+	vaibhav:Meal(?x) ^ vaibhav:hasCalories(?x, "Medium") -> vaibhav:MediumCaloriesMeal(?x)
+
+15. High calories meals rule: Rule for high calories meals.
+
+	vaibhav:Meal(?x) ^ vaibhav:hasCalories(?x, "High") -> vaibhav:HighCaloriesMeal(?x)
+
+
+Reverse of hasIngredient rule:
+
+16. Reverse of hasIngredient rule: Reverse rule of hasIngredient.
+
+	vaibhav:hasIngredients(?x, ?y) -> vaibhav:isInMeal(?y, ?x)
+
+
+Rule for all possible combinations of preferences in personalized menu: 
+
+17. Lactose gluten non vegetarian high calories level menu rule: Rule for lactose gluten non vegetarian high calories level menu.
+	
+	vaibhav:Menu(vaibhav:LactoseGlutenNoVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseGlutenNoVegHighMenu, ?meal)
+
+18. Lactose gluten non vegetarian low calories level menu rule: Rule for lactose gluten non vegetarian low calories level menu.
+	
+	vaibhav:Menu(vaibhav:LactoseGlutenNoVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseGlutenNoVegLowMenu, ?meal)
+
+19. Lactose gluten non vegetarian medium calories level menu rule: Rule for lactose gluten non vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenNoVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseGlutenNoVegMediumMenu, ?meal)
+
+20. Lactose gluten vegetarian high calories level menu rule: Rule for lactose gluten vegetarian high calories level menu.
+	
+	vaibhav:Menu(vaibhav:LactoseGlutenVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseGlutenVegHighMenu, ?meal)
+
+21. Lactose gluten vegetarian low calories level menu rule: Rule for lactose gluten vegetarian low calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseGlutenVegLowMenu, ?meal)
+
+22. Lactose gluten vegetarian medium calories level menu rule: Rule for lactose gluten vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseGlutenVegMediumMenu, ?meal)
+
+23. Lactose gluten-free non vegetarian high calories level menu: Rule for lactose gluten-free non vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeNoVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeNoVegHighMenu, ?meal)
+
+24. Lactose gluten-free non vegetarian low calories level menu rule: Rule for lactose gluten-free non vegetarian low calories level menu.
+	
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeNoVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeNoVegLowMenu, ?meal)
+
+25. Lactose gluten-free non vegetarian medium calories level menu rule: Rule for lactose gluten-free non vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeNoVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeNoVegMediumMenu, ?meal)
+
+26. Lactose gluten-free vegetarian high calories level menu rule: Rule for lactose gluten-free vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeVegHighMenu, ?meal)
+
+27. Lactose gluten-free vegetarian low calories level menu rule: Rule for lactose gluten-free vegetarian low calories level menu.
+	
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeVegLowMenu, ?meal)
+
+28. Lactose gluten-free vegetarian medium calories level menu rule: Rule for lactose gluten-free vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseGlutenFreeVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseGlutenFreeVegMediumMenu, ?meal)
+
+29. Lactose-free gluten non vegetarian high calories level menu rule: Rule for lactose-free gluten non vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenNoVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenNoVegHighMenu, ?meal)
+
+30. Lactose-free gluten non vegetarian low calories level menu rule: Rule for lactose-free gluten non vegetarian low calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenNoVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenNoVegLowMenu, ?meal)
+
+31. Lactose-free gluten non vegetarian medium calories level menu rule: Rule for lactose-free gluten non vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenNoVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenNoVegMediumMenu, ?meal)
+
+32. Lactose-free gluten vegetarian high calories level menu rule: Rule for lactose-free gluten vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenVegHighMenu, ?meal)
+
+33. Lactose-free gluten vegetarian low calories level menu rule: Rule for lactose-free gluten vegetarian low calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenVegLowMenu, ?meal)
+
+34. Lactose-free gluten vegetarian medium calories level menu rule: Rule for lactose-free gluten vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenVegMediumMenu, ?meal)
+
+35. Lactose-free gluten-free non vegetarian high calories level menu rule: Rule for lactose-free gluten-free non vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeNoVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeNoVegHighMenu, ?meal)
+
+36. Lactose-free gluten-free non vegetarian low calories level menu rule: Rule for lactose-free gluten-free non vegetarian low calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeNoVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeNoVegLowMenu, ?meal)
+
+37. Lactose-free gluten-free non vegetarian medium calories level menu rule: Rule for lactose-free gluten-free non vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeNoVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeNoVegMediumMenu, ?meal)
+	
+38. Lactose-free gluten-free vegetarian high calories level menu rule: Rule for lactose-free gluten-free vegetarian high calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeVegHighMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "High") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeVegHighMenu, ?meal)
+
+39. Lactose-free gluten-free vegetarian low calories level menu rule: Rule for lactose-free gluten-free vegetarian low calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeVegLowMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Low") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeVegLowMenu, ?meal)
+
+40. Lactose-free gluten-free vegetarian medium calories level menu rule: Rule for lactose-free gluten-free vegetarian medium calories level menu.
+
+	vaibhav:Menu(vaibhav:LactoseFreeGlutenFreeVegMediumMenu) ^ vaibhav:Meal(?meal) ^ vaibhav:MealHasLactose(?meal, false) ^ vaibhav:MealHasGluten(?meal, false) ^ vaibhav:MealIsVegetarian(?meal, true) ^ vaibhav:hasCalories(?meal, "Medium") -> vaibhav:hasMeal(vaibhav:LactoseFreeGlutenFreeVegMediumMenu, ?meal)

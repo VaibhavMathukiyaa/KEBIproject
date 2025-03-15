@@ -1,0 +1,288 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vaibhav: <http://www.semanticweb.org/kebi/2023-2024/mathukiya.vaibhav#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+
+#Shape to add constraints to the Ingredient class.
+vaibhav:IngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:Ingredient ; # Applies to all ingredients
+    sh:property [              
+        sh:path vaibhav:hasName ;  #add constraints to hasName property
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:hasGluten ;  #add constraints to hasGluten property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:hasLactose ;  #add constraints to hasLactose property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:isVegetarian ;  #add constraints to isVegetarian property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:isInMeal ;  #add constraints to isInMeal property
+        sh:class vaibhav:Meal ;
+        sh:severity sh:Warning ;
+    ].
+
+#Shape to add constraints to the GlutenIngredient class.
+vaibhav:GlutenIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:GlutenIngredient ; # Applies to all gluten ingredients       
+    sh:property [              
+        sh:path vaibhav:hasGluten ;  #add constraints to hasGluten property
+        sh:hasValue true;
+    ].
+
+#Shape to add constraints to the NoGlutenIngredient class.
+vaibhav:NoGlutenIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoGlutenIngredient ; # Applies to all non-gluten ingredients       
+    sh:property [              
+        sh:path vaibhav:hasGluten ;  #add constraints to hasGluten property
+        sh:hasValue false;
+    ].
+
+#Shape to add constraints to the LactoseIngredient class.
+vaibhav:LactoseIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:LactoseIngredient ; # Applies to all lactose ingredients       
+    sh:property [              
+        sh:path vaibhav:hasLactose ;  #add constraints to hasLactose property
+        sh:hasValue true;
+    ].
+
+#Shape to add constraints to the NoLactoseIngredient class.
+vaibhav:NoLactoseIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoLactoseIngredient ; # Applies to all non-lactose ingredients       
+    sh:property [              
+        sh:path vaibhav:hasLactose ;  #add constraints to hasLactose property
+        sh:hasValue false;
+    ].
+
+#Shape to add constraints to the VegIngredient class.
+vaibhav:VegIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:VegIngredient ; # Applies to all Vegetarian ingredients       
+    sh:property [              
+        sh:path vaibhav:isVegetarian ;  #add constraints to isVegetarian property
+        sh:hasValue true;
+    ].
+
+#Shape to add constraints to the NoVegIngredient class.
+vaibhav:NoVegIngredientShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoVegIngredient ; # Applies to all non-vegetarian ingredients       
+    sh:property [              
+        sh:path vaibhav:isVegetarian ;  #add constraints to isVegetarian property
+        sh:hasValue false;
+    ].
+
+#Shape to add constraints to the Meal class.
+vaibhav:MealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:Meal ; # Applies to all meals
+    sh:property [              
+        sh:path vaibhav:hasName ;  # Add constraints to hasName property
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:MealHasGluten ;  # Add constraints to MealHasGluten property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:MealHasLactose ;  # Add constraints to MealHasLactose property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:MealIsVegetarian ;  # Add constraints to MealIsVegetarian property
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:hasCalories ;  # Add constraints to hasCalories property
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;     
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [              
+        sh:path vaibhav:hasIngredients ;  # Add constraints to hasIngredients property
+        sh:class vaibhav:Ingredient ;
+        sh:severity sh:Warning ;
+    ].
+
+#Shape to add constraints to the GlutenMeal class.
+vaibhav:GlutenMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:GlutenMeal ; # Applies to all gluten meals       
+    sh:property [              
+        sh:path vaibhav:MealHasGluten ;  # Add constraints to MealHasGluten property
+        sh:hasValue true ;
+    ].
+
+#Shape to add constraints to the NoGlutenMeal class.
+vaibhav:NoGlutenMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoGlutenMeal ; # Applies to all non-gluten meals       
+    sh:property [              
+        sh:path vaibhav:MealHasGluten ;  # Add constraints to MealHasGluten property
+        sh:hasValue false ;
+    ];
+    sh:property [              
+        sh:path vaibhav:hasIngredients ;  # Ensures all ingredients in a NoGlutenMeal are gluten-free
+        sh:node [
+            sh:path vaibhav:hasGluten ;
+            sh:hasValue false ;
+        ] ;
+    ].
+
+#Shape to add constraints to the LactoseMeal class.
+vaibhav:LactoseMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:LactoseMeal ; # Applies to all lactose meals       
+    sh:property [              
+        sh:path vaibhav:MealHasLactose ;  # Add constraints to MealHasLactose property
+        sh:hasValue true ;
+    ].
+
+#Shape to add constraints to the NoLactoseMeal class.
+vaibhav:NoLactoseMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoLactoseMeal ; # Applies to all non-lactose meals       
+    sh:property [              
+        sh:path vaibhav:MealHasLactose ;  # Add constraints to MealHasLactose property
+        sh:hasValue false ;
+    ];
+    sh:property [              
+        sh:path vaibhav:hasIngredients ;  # Ensures all ingredients in a NoLactoseMeal are lactose-free
+        sh:node [
+            sh:path vaibhav:hasLactose ;
+            sh:hasValue false ;
+        ] ;
+    ].
+
+#Shape to add constraints to the VegMeal class.
+vaibhav:VegMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:VegMeal ; # Applies to all vegetarian meals       
+    sh:property [              
+        sh:path vaibhav:MealIsVegetarian ;  # Add constraints to MealIsVegetarian property
+        sh:hasValue true ;
+    ];
+    sh:property [              
+        sh:path vaibhav:hasIngredients ;  # Ensures all ingredients in a VegMeal are vegetarian
+        sh:node [
+            sh:path vaibhav:isVegetarian ;
+            sh:hasValue true ;
+        ] ;
+    ].
+
+#Shape to add constraints to the NoVegMeal class.
+vaibhav:NoVegMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:NoVegMeal ; # Applies to all non-vegetarian meals       
+    sh:property [              
+        sh:path vaibhav:MealIsVegetarian ;  # Add constraints to MealIsVegetarian property
+        sh:hasValue false ;
+    ].
+
+#Shape to add constraints to the LowCaloriesMeal class.
+vaibhav:LowCaloriesMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:LowCaloriesMeal ; # Applies to all low calories meals       
+    sh:property [              
+        sh:path vaibhav:hasCalories ;  # Add constraints to hasCalories property
+        sh:hasValue "Low" ;
+    ].
+
+#Shape to add constraints to the MediumCaloriesMeal class.
+vaibhav:MediumCaloriesMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:MediumCaloriesMeal ; # Applies to all medium calories meals       
+    sh:property [              
+        sh:path vaibhav:hasCalories ;  # Add constraints to hasCalories property
+        sh:hasValue "Medium" ;
+    ].
+
+#Shape to add constraints to the HighCaloriesMeal class.
+vaibhav:HighCaloriesMealShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:HighCaloriesMeal ; # Applies to all high calories meals       
+    sh:property [              
+        sh:path vaibhav:hasCalories ;  # Add constraints to hasCalories property
+        sh:hasValue "High" ;
+    ].
+
+#Shape to add constraints to the Menu class.
+vaibhav:MenuShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:Menu ; # Applies to all personalized menu       
+    sh:property [              
+        sh:path vaibhav:hasMeal ;  # Add constraints to hasMeal property
+        sh:class vaibhav:Meal ;
+        sh:severity sh:Warning ;
+    ].
+
+# Additional shapes for menu types
+vaibhav:LactoseGlutenNoVegHighMenuShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:LactoseGlutenNoVegHighMenu ;
+    sh:property [
+        sh:path vaibhav:hasMeal ;
+        sh:class vaibhav:HighCaloriesMeal ;
+        sh:severity sh:Warning ;
+    ].
+
+vaibhav:LactoseFreeGlutenFreeVegLowMenuShape
+    a sh:NodeShape ;
+    sh:targetClass vaibhav:LactoseFreeGlutenFreeVegLowMenu ;
+    sh:property [
+        sh:path vaibhav:hasMeal ;
+        sh:node [
+            sh:class vaibhav:LowCaloriesMeal ;
+            sh:property [
+                sh:path vaibhav:MealHasLactose ;
+                sh:hasValue false ;
+            ] ;
+            sh:property [
+                sh:path vaibhav:MealHasGluten ;
+                sh:hasValue false ;
+            ] ;
+            sh:property [
+                sh:path vaibhav:MealIsVegetarian ;
+                sh:hasValue true ;
+            ] ;
+        ] ;
+        sh:severity sh:Warning ;
+    ].
